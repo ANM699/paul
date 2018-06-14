@@ -1,0 +1,31 @@
+<!--pages/user/index.wxml-->
+<view wx:if="{{logged}}" class="userInfo">
+  <open-data class="avatar" type="userAvatarUrl"></open-data>
+  <open-data class="nickname" type="userNickName"></open-data>
+</view>
+<view wx:else class="userInfo">
+  <image class="avatar" src="../../images/user_unlogin.png"></image>
+  <button class="btn-log" open-type="getUserInfo" bindgetuserinfo="login">登录</button>
+</view>
+<view class="container">
+  <view class="chart">
+    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+  </view>
+  <view class="detail">
+    <view class="block color-score-3">
+      <text>{{chartData[2]}}</text>
+      <text class="sub">场*3</text>
+    </view>
+    <view class="block color-score-1">
+      <text>{{chartData[1]}}</text>
+      <text class="sub">场*1</text>
+    </view>
+    <view class="block color-score-0">
+      <text>{{chartData[0]}}</text>
+      <text class="sub">场*0</text>
+    </view>
+  </view>
+</view>
+<button open-type="contact" class="btn-contact">意见反馈</button>
+<icon type="info_circle" class="tip" size="26" bindtap="showTip"></icon>
+  <image class="btn-reload" src="../../images/reload.png" mode="aspectFit" bindtap="onLoad"></image>

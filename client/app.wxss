@@ -1,0 +1,114 @@
+/**app.wxss**/
+.tab-h {
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: #2cc17b;
+  font-size: 32rpx;
+  white-space: nowrap;
+  z-index: 99;
+  color:#fff;
+}
+
+.tab-item {
+  margin: 0 36rpx;
+  display: inline-block;
+  text-align: center;
+}
+
+.tab-item.active {
+  /*#4675f9*/
+  /* color: #2cc17b; */
+  font-weight: bold;
+  position: relative;
+}
+
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 6rpx;
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  border-radius: 16rpx;
+}
+
+.scroll-h {
+  height: 100%;
+}
+
+.team {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.logo-country {
+  height: 80rpx;
+  width: 120rpx;
+  border-radius: 5rpx;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.15);
+}
+
+.logo-club {
+  height: 90rpx;
+  width: 90rpx;
+}
+
+.name {
+  font-size: 32rpx;
+  width: 180rpx;
+  text-align: center;
+}
+
+.time-score {
+  font-size: 40rpx;
+  font-weight: bold;
+  padding: 10rpx 0;
+}
+
+.round {
+  font-size: 28rpx;
+  color: #b0b0b0;
+}
+
+.color-score-3 {
+  color: #2cc17b;
+}
+
+.color-score-1 {
+  color: #ffbe00;
+}
+
+.color-score-0 {
+  color: #f76260;
+}
+
+.paul {
+  /* font-size: 30rpx; 
+   color: #2cc17b; */
+  color: #fff;
+  font-size: 26rpx;
+}
+
+.paul-disable {
+  font-size: 30rpx;
+  color: #b0b0b0;
+}
+
+.btn-paul {
+  line-height: 2;
+  background-color: #2cc17b;
+  padding: 0 15rpx;
+  /* line-height: unset;
+   background-color: unset;  */
+}
+
+.btn-paul::after {
+  /* display: none; */
+}

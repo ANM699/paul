@@ -1,0 +1,107 @@
+<!--pages/paul/index.wxml-->
+<wxs module="m">
+  var convertDatetime = function(utc) {
+    var M = getDate(utc).getMonth() + 1
+    var D = getDate(utc).getDate()
+    var h = getDate(utc).getHours()
+    var m = getDate(utc).getMinutes()
+    h = h < 10 ? ('0' + h) : h
+    m = m < 10 ? ('0' + m) : m
+    var time = M + "月" + D + "日" + " " + h + ":" + m
+    return time
+  }
+
+  var convertRound = function(round) {
+    var res = ''
+    switch (round) {
+      case 32:
+        res = '小组赛'
+        break
+      case 16:
+        res = '1/8决赛'
+        break
+      case 8:
+        res = '1/4决赛'
+        break
+      case 4:
+        res = '半决赛'
+        break
+      case 2:
+        res = '三、四名决赛'
+        break
+      case 1:
+        res = '决赛'
+        break
+      default:
+        break
+    }
+    return res
+  }
+
+  var compareDatetime = function(matchTime) {
+    return getDate(matchTime) > getDate()
+  }
+
+  module.exports = {
+    convertDatetime: convertDatetime,
+    convertRound: convertRound,
+    compareDatetime: compareDatetime
+  }
+</wxs>
+
+<view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view wx:for="{{competitionList}}" wx:key="competition_id" class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" style="width:{{competitionList.length<4?(750/competitionList.length-72):''}}rpx" bindtap="switchNav">{{item.name}}</view>
+  </scroll-view>
+  <swiper current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item wx:for="{{competitionList}}" wx:for-item="competition">
+      <scroll-view scroll-y="true" class="scroll-h" upper-threshold="-5" lower-threshold="-5" enable-back-to-top bindscrolltoupper="scrollToUp" bindscrolltolower="scrollToLow">
+        <view class="scroll-content" style="min-height:{{winHeight+10}}rpx">
+          <block wx:if="{{matchList[competition.competition_id]&&matchList[competition.competition_id].length==0}}">
+            <view class="noMatch">暂无比赛，下拉查看历史</view>
+          </block>
+          <block wx:for="{{matchList[competition.competition_id]}}">
+            <view class="item-match" id="{{item.match_id}}" bindtap="showDetail">
+              <view class="team">
+                <!-- <image class="{{competition.type?'logo-country':'logo-club'}}" src="{{cosUrl+item.home+'.png'}}"></image> -->
+                <image class="{{competition.isClub?'logo-club':'logo-country'}}" src="{{item.logo_home}}"></image>
+                <view class="name">
+                  {{item.home}}
+                </view>
+              </view>
+
+              <view class="info">
+                <view class="round">
+                  {{competition.type==1?m.convertRound(item.round):'第'+item.round+'轮'}}
+                </view>
+
+                <view class="time-score {{!m.compareDatetime(item.match_time)&&(item.score_home!=null&&item.score_away!=null)?(item.paul_score==3?'color-score-3':(item.paul_score==1?'color-score-1':(item.paul_score==0?'color-score-0':''))):''}}">
+                  {{!m.compareDatetime(item.match_time)&&(item.score_home!=null&&item.score_away!=null)?(item.score_home+' : '+item.score_away):m.convertDatetime(item.match_time)}}
+                </view>
+              <block wx:if="{{sw}}">
+                <picker wx:if="{{m.compareDatetime(item.match_time)}}" disabled="{{!logged}}" mode="multiSelector" data-match="{{item}}" catchtap='stopBubble' bindchange="bindMultiPickerChange" value="{{item.paul_id?[item.paul_home,0,item.paul_away]:[0,0,0]}}" range="{{multiArray}}">
+                  <button open-type="getUserInfo" bindgetuserinfo="login" class="btn-paul paul">
+                    {{!item.paul_id?'猜猜看':(item.paul_home+' : '+item.paul_away)}}
+                  </button>
+                </picker>
+                <view class="paul-disable" wx:else>
+                  {{item.paul_id?(item.paul_home+' : '+item.paul_away):'- : -'}}
+                </view>
+                </block>
+              </view>
+
+              <view class="team">
+                <image class="{{competition.isClub?'logo-club':'logo-country'}}" src="{{item.logo_away}}"></image>
+                <view class="name">
+                  {{item.away}}
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <icon wx:if="{{sw}}" type="info_circle" class="tip" size="26" bindtap="showTip"></icon>
+  <image class="btn-reload" src="../../images/reload.png" mode="aspectFit" bindtap="onLoad"></image>
+</view>

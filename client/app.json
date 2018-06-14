@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/paul/index",
+    "pages/rank/index",
+    "pages/user/index",
+    "pages/paul/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#2cc17b",
+    "navigationBarTitleText": "足球比赛猜猜看",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#99a4bf",
+    "selectedColor": "#2cc17b",
+    "list": [
+      {
+        "pagePath": "pages/paul/index",
+        "text": "猜猜看",
+        "iconPath": "images/tab_paul.png",
+        "selectedIconPath": "images/tab_paul_selected.png"
+      },
+      {
+        "pagePath": "pages/rank/index",
+        "text": "排行榜",
+        "iconPath": "images/tab_rank.png",
+        "selectedIconPath": "images/tab_rank_selected.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "战绩",
+        "iconPath": "images/tab_user.png",
+        "selectedIconPath": "images/tab_user_selected.png"
+      }
+    ]
+  }
+}

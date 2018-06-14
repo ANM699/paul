@@ -1,0 +1,104 @@
+<!--pages/paul/detail.wxml-->
+<wxs module="m">
+  var convertDatetime = function(utc) {
+    var M = getDate(utc).getMonth() + 1
+    var D = getDate(utc).getDate()
+    var h = getDate(utc).getHours()
+    var m = getDate(utc).getMinutes()
+    h = h < 10 ? ('0' + h) : h
+    m = m < 10 ? ('0' + m) : m
+    var time = M + "月" + D + "日" + " " + h + ":" + m
+    return time
+  }
+
+  var convertRound = function(round) {
+    var res = ''
+    switch (round) {
+      case 32:
+        res = '小组赛'
+        break
+      case 16:
+        res = '1/8决赛'
+        break
+      case 8:
+        res = '1/4决赛'
+        break
+      case 4:
+        res = '半决赛'
+        break
+      case 2:
+        res = '三、四名决赛'
+        break
+      case 1:
+        res = '决赛'
+        break
+      default:
+        break
+    }
+    return res
+  }
+
+  var compareDatetime = function(matchTime) {
+    return getDate(matchTime) > getDate()
+  }
+
+  module.exports = {
+    convertDatetime: convertDatetime,
+    convertRound: convertRound,
+    compareDatetime: compareDatetime
+  }
+</wxs>
+<view class="container">
+  <view class="match">
+    <block wx:if="{{matchInfo}}">
+      <view class="team">
+        <image class="{{matchInfo.isClub?'logo-club':'logo-country'}}" src="{{matchInfo.logo_home}}"></image>
+        <view class="name">
+          {{matchInfo.home}}
+        </view>
+      </view>
+
+      <view class="info">
+        <view class="round">
+          {{matchInfo.type==1?m.convertRound(matchInfo.round):'第'+matchInfo.round+'轮'}}
+        </view>
+
+        <view class="time-score {{!m.compareDatetime(matchInfo.match_time)&&(matchInfo.score_home!=null&&matchInfo.score_away!=null)?(matchInfo.paul_score==3?'color-score-3':(matchInfo.paul_score==1?'color-score-1':(matchInfo.paul_score==0?'color-score-0':''))):''}}">
+          {{!m.compareDatetime(matchInfo.match_time)&&(matchInfo.score_home!=null&&matchInfo.score_away!=null)?(matchInfo.score_home+' : '+matchInfo.score_away):m.convertDatetime(matchInfo.match_time)}}
+        </view>
+
+        <picker wx:if="{{m.compareDatetime(matchInfo.match_time)}}" disabled="{{!logged}}" mode="multiSelector" data-match="{{matchInfo}}" bindchange="bindMultiPickerChange" value="{{matchInfo.paul_id?[matchInfo.paul_home,0,matchInfo.paul_away]:[0,0,0]}}" range="{{multiArray}}">
+          <button open-type="getUserInfo" bindgetuserinfo="login" class="btn-paul paul">
+            {{!matchInfo.paul_id?'猜猜看':(matchInfo.paul_home+' : '+matchInfo.paul_away)}}
+          </button>
+        </picker>
+        <view class="paul-disable" wx:else>
+          {{matchInfo.paul_id?(matchInfo.paul_home+' : '+matchInfo.paul_away):'- : -'}}
+        </view>
+      </view>
+
+      <view class="team">
+        <image class="{{matchInfo.isClub?'logo-club':'logo-country'}}" src="{{matchInfo.logo_away}}"></image>
+        <view class="name">
+          {{matchInfo.away}}
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="paulStat">
+    <view class="block block-home" style="height:{{paulStat.home_win*240}}rpx">
+      {{paulStat.home_win?'主胜':''}}</view>
+    <view class="block block-draw" style="height:{{paulStat.draw*240}}rpx">{{paulStat.draw?'平局':''}}</view>
+    <view class="block block-away" style="height:{{paulStat.away_win*240}}rpx">{{paulStat.away_win?'客胜':''}}</view>
+  </view>
+  <view class="paulTop">
+    <view class="title">预测TOP10</view>
+    <view class="item-paulTop" wx:for="{{paulTop}}">
+      <view class="score" wx:if="{{item}}">{{item.paul_home}}:{{item.paul_away}}</view>
+      <view class="bar {{index==0?'color-bar-1':(index==1?'color-bar-2':(index==2?'color-bar-3':''))}}" style="width:{{item.paul_ct*550}}rpx"></view>
+    </view>
+  </view>
+  <image class="btn-reload {{scene==1007||scene==1008?'btn-reload_offset':''}}" src="../../images/reload.png" mode="aspectFit" bindtap="onRefresh"></image>
+  <image wx:if="{{scene==1007||scene==1008}}" class="btn-home" src="../../images/tab_paul_selected.png" mode="aspectFit" bindtap="backToHome"></image>
+</view>

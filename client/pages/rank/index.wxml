@@ -1,0 +1,51 @@
+<!--pages/paul/index.wxml-->
+
+<view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view wx:for="{{competitionList}}" wx:key="competition_id" class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" style="width:{{competitionList.length<4?(750/competitionList.length-72):''}}rpx" bindtap="switchNav">{{item.name}}</view>
+  </scroll-view>
+  <view class="title-rank">
+    <view class="cell">排名</view>
+    <view class="cell cell-user">用户</view>
+    <view class="cell">场</view>
+    <view class="cell color-score-3">3分</view>
+    <view class="cell color-score-1">1分</view>
+    <view class="cell color-score-0">0分</view>
+    <view class="cell">积分</view>
+  </view>
+  <swiper current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{logged?winHeight-105:winHeight}}rpx">
+    <swiper-item wx:for="{{competitionList}}" wx:for-item="competition">
+      <scroll-view scroll-y="true" class="scroll-h"  enable-back-to-top>
+        <view class="scroll-content">
+          <block wx:for="{{rank[competition.competition_id].rankList}}">
+            <view class="item-rank">
+              <view class="cell {{item.rowNum==1?'color-no-1':(item.rowNum==2?'color-no-2':(item.rowNum==3?'color-no-3':''))}}">{{item.rowNum}}</view>
+              <image class="avatar {{item.user_info.gender==1?'male':(item.user_info.gender==2?'female':'')}}" src="{{item.user_info.avatarUrl?item.user_info.avatarUrl:'../../images/user_unlogin.png'}}"></image>
+              <!-- <image class="gender" src="{{item.user_info.gender?'../../images/male.png':'../../images/female.png'}}"></image> -->
+              <view class="user cell-user nickname">{{item.user_info.nickName}}</view>
+              <view class="cell">{{item.count}}</view>
+              <view class="cell">{{item.win}}</view>
+              <view class="cell">{{item.draw}}</view>
+              <view class="cell">{{item.lose}}</view>
+              <view class="cell sum">{{item.sum}}</view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <view wx:if="{{logged}}" class="myRank">
+    <view class="cell">{{rank[curCompetitionId].myRank?rank[curCompetitionId].myRank.rowNum:'-'}}</view>
+    <!-- <image class="avatar {{rank[competition.competition_id].myRank.user_info.gender?'male':'female'}}" src="{{rank[competition.competition_id].myRank.user_info.avatarUrl?rank[competition.competition_id].myRank.user_info.avatarUrl:'../../images/user_unlogin.png'}}"></image>
+    <view class="user cell-user nickname">{{rank[competition.competition_id].myRank.user_info.nickName}}</view> -->
+    <open-data class="avatar" type="userAvatarUrl"></open-data>
+    <open-data class="user cell-user nickname" type="userNickName"></open-data>
+    <view class="cell">{{rank[curCompetitionId].myRank?rank[curCompetitionId].myRank.count:'0'}}</view>
+    <view class="cell">{{rank[curCompetitionId].myRank?rank[curCompetitionId].myRank.win:'0'}}</view>
+    <view class="cell">{{rank[curCompetitionId].myRank?rank[curCompetitionId].myRank.draw:'0'}}</view>
+    <view class="cell">{{rank[curCompetitionId].myRank?rank[curCompetitionId].myRank.lose:'0'}}</view>
+    <view class="cell sum">{{rank[curCompetitionId].myRank?rank[curCompetitionId].myRank.sum:'0'}}</view>
+  </view>
+  <icon type="info_circle" class="tip" size="26" bindtap="showTip"></icon>
+    <image class="btn-reload" src="../../images/reload.png" mode="aspectFit" bindtap="onLoad"></image>
+</view>
