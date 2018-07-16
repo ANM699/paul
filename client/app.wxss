@@ -1,4 +1,5 @@
 /**app.wxss**/
+
 .tab-h {
   height: 80rpx;
   width: 100%;
@@ -9,7 +10,7 @@
   font-size: 32rpx;
   white-space: nowrap;
   z-index: 99;
-  color:#fff;
+  color: #fff;
 }
 
 .tab-item {
@@ -19,8 +20,7 @@
 }
 
 .tab-item.active {
-  /*#4675f9*/
-  /* color: #2cc17b; */
+  /*#4675f9*//* color: #2cc17b; */
   font-weight: bold;
   position: relative;
 }
@@ -61,7 +61,7 @@
 }
 
 .name {
-  font-size: 32rpx;
+  font-size: 30rpx;
   width: 180rpx;
   text-align: center;
 }
@@ -69,6 +69,7 @@
 .time-score {
   font-size: 40rpx;
   font-weight: bold;
+  color: #333333;
   padding: 10rpx 0;
 }
 
@@ -89,6 +90,10 @@
   color: #f76260;
 }
 
+.color-score-disable {
+  color: #b0b0b0;
+}
+
 .paul {
   /* font-size: 30rpx; 
    color: #2cc17b; */
@@ -98,7 +103,6 @@
 
 .paul-disable {
   font-size: 30rpx;
-  color: #b0b0b0;
 }
 
 .btn-paul {

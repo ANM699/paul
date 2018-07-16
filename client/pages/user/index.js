@@ -159,6 +159,7 @@ Page({
       url: config.service.paulUrl + '/count',
       login: true,
       success: function (res) {
+        console.log(res)
         var chartData = [0, 0, 0]
         var paulSum = 0
         for (var i in res.data.data) {

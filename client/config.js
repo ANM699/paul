@@ -3,8 +3,8 @@
  */
 
 // var host = 'http://localhost:5757';//本地环境
-var host = 'https://jemhkbux.qcloud.la';//开发环境
-// var host = 'https://752222465.paul-mp.xyz';//生产环境
+// var host = 'https://jemhkbux.qcloud.la';//开发环境
+var host = 'https://752222465.paul-mp.xyz';//生产环境
 var config = {
 
     service: {

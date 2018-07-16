@@ -329,7 +329,7 @@ Page({
         }
       }
       else {
-        that.data.matchList[that.data.curCompetitionId] = res.data.data
+        that.data.matchList[that.data.curCompetitionId] = res.data.data.reverse()
       }
       that.setData({
         ["matchList." + that.data.curCompetitionId]: that.data.matchList[that.data.curCompetitionId]

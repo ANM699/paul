@@ -21,7 +21,7 @@ const CONF = {
         port: 3306,
         user: 'root',
         db: 'paul',
-        pass: 'Abcd123456',
+        pass: 'Abcd@123456',
         char: 'utf8mb4'
     },
 
@@ -41,7 +41,7 @@ const CONF = {
     wxLoginExpires: 7200,
     wxMessageToken: 'paul',
 
-    cosUrl:'https://paul-1256703356.cossh.myqcloud.com/team/',//图片存储地址
+    cosUrl: 'https://paul-1256703356.cossh.myqcloud.com/team/', //图片存储地址
 
     //以下为本地搭建开发环境
     // serverHost: 'localhost',
@@ -54,7 +54,7 @@ const CONF = {
     // wxMessageToken: 'weixinmsgtoken',
     // networkTimeout: 30000
 
-    
+
 }
 
 module.exports = CONF

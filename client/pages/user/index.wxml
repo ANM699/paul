@@ -27,5 +27,6 @@
   </view>
 </view>
 <button open-type="contact" class="btn-contact">意见反馈</button>
+<ad class="ad" unit-id="adunit-bbc0e35f1c3cd903"></ad>
 <icon type="info_circle" class="tip" size="26" bindtap="showTip"></icon>
   <image class="btn-reload" src="../../images/reload.png" mode="aspectFit" bindtap="onLoad"></image>

@@ -7,7 +7,14 @@
     var m = getDate(utc).getMinutes()
     h = h < 10 ? ('0' + h) : h
     m = m < 10 ? ('0' + m) : m
-    var time = M + "月" + D + "日" + " " + h + ":" + m
+    var time = h + ":" + m
+    if (getDate(utc).toDateString() === getDate().toDateString()) {
+      time = '今天' + " " + time
+    } else if (getDate(utc).toDateString() === getDate(getDate().setDate(getDate().getDate() + 1)).toDateString()) {
+      time = '明天' + " " + time
+    } else {
+      time = M + "月" + D + "日" + " " + time
+    }
     return time
   }
 
@@ -55,7 +62,7 @@
   </scroll-view>
   <swiper current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
     <swiper-item wx:for="{{competitionList}}" wx:for-item="competition">
-      <scroll-view scroll-y="true" class="scroll-h" upper-threshold="-5" lower-threshold="-5" enable-back-to-top bindscrolltoupper="scrollToUp" bindscrolltolower="scrollToLow">
+      <scroll-view scroll-y="true" class="scroll-h" upper-threshold="-90" lower-threshold="-90" enable-back-to-top bindscrolltoupper="scrollToUp" bindscrolltolower="scrollToLow">
         <view class="scroll-content" style="min-height:{{winHeight+10}}rpx">
           <block wx:if="{{matchList[competition.competition_id]&&matchList[competition.competition_id].length==0}}">
             <view class="noMatch">暂无比赛，下拉查看历史</view>
@@ -75,18 +82,19 @@
                   {{competition.type==1?m.convertRound(item.round):'第'+item.round+'轮'}}
                 </view>
 
-                <view class="time-score {{!m.compareDatetime(item.match_time)&&(item.score_home!=null&&item.score_away!=null)?(item.paul_score==3?'color-score-3':(item.paul_score==1?'color-score-1':(item.paul_score==0?'color-score-0':''))):''}}">
+                <view class="time-score">
                   {{!m.compareDatetime(item.match_time)&&(item.score_home!=null&&item.score_away!=null)?(item.score_home+' : '+item.score_away):m.convertDatetime(item.match_time)}}
                 </view>
-              <block wx:if="{{sw}}">
-                <picker wx:if="{{m.compareDatetime(item.match_time)}}" disabled="{{!logged}}" mode="multiSelector" data-match="{{item}}" catchtap='stopBubble' bindchange="bindMultiPickerChange" value="{{item.paul_id?[item.paul_home,0,item.paul_away]:[0,0,0]}}" range="{{multiArray}}">
-                  <button open-type="getUserInfo" bindgetuserinfo="login" class="btn-paul paul">
-                    {{!item.paul_id?'猜猜看':(item.paul_home+' : '+item.paul_away)}}
-                  </button>
-                </picker>
-                <view class="paul-disable" wx:else>
-                  {{item.paul_id?(item.paul_home+' : '+item.paul_away):'- : -'}}
-                </view>
+                <block wx:if="{{sw}}">
+                  <picker wx:if="{{m.compareDatetime(item.match_time)}}" disabled="{{!logged}}" mode="multiSelector" data-match="{{item}}" catchtap='stopBubble' bindchange="bindMultiPickerChange" value="{{item.paul_id?[item.paul_home,0,item.paul_away]:[0,0,0]}}" range="{{multiArray}}">
+                    <button open-type="getUserInfo" bindgetuserinfo="login" class="btn-paul paul">
+                      {{!item.paul_id?'猜猜看':(item.paul_home+' : '+item.paul_away)}}
+                    </button>
+                  </picker>
+                  <view class="paul-disable {{!m.compareDatetime(item.match_time)&&(item.score_home!=null&&item.score_away!=null)?(item.paul_score==3?'color-score-3':(item.paul_score==1?'color-score-1':(item.paul_score==0?'color-score-0':'color-score-disable'))):'color-score-disable'}}"
+                    wx:else>
+                    {{item.paul_id?(item.paul_home+' : '+item.paul_away):'- : -'}}
+                  </view>
                 </block>
               </view>
 

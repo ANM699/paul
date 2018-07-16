@@ -38,7 +38,7 @@
   justify-content: space-around;
   align-items: flex-end;
   border-bottom: 2rpx solid #b0b0b0;
-  margin: 20rpx 0 10rpx 0;
+  margin: 20rpx 0 30rpx 0;
   box-sizing: border-box;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .paulTop {
-  margin: 20rpx;
+  margin: 10rpx 0 20rpx 0;
   width: 700rpx;
   display: flex;
   flex-direction: column;

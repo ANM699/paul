@@ -7,7 +7,14 @@
     var m = getDate(utc).getMinutes()
     h = h < 10 ? ('0' + h) : h
     m = m < 10 ? ('0' + m) : m
-    var time = M + "月" + D + "日" + " " + h + ":" + m
+    var time = h + ":" + m
+    if (getDate(utc).toDateString() === getDate().toDateString()) {
+      time = '今天' + " " + time
+    } else if (getDate(utc).toDateString() === getDate(getDate().setDate(getDate().getDate() + 1)).toDateString()) {
+      time = '明天' + " " + time
+    } else {
+      time = M + "月" + D + "日" + " " + time
+    }
     return time
   }
 
@@ -63,7 +70,7 @@
           {{matchInfo.type==1?m.convertRound(matchInfo.round):'第'+matchInfo.round+'轮'}}
         </view>
 
-        <view class="time-score {{!m.compareDatetime(matchInfo.match_time)&&(matchInfo.score_home!=null&&matchInfo.score_away!=null)?(matchInfo.paul_score==3?'color-score-3':(matchInfo.paul_score==1?'color-score-1':(matchInfo.paul_score==0?'color-score-0':''))):''}}">
+        <view class="time-score">
           {{!m.compareDatetime(matchInfo.match_time)&&(matchInfo.score_home!=null&&matchInfo.score_away!=null)?(matchInfo.score_home+' : '+matchInfo.score_away):m.convertDatetime(matchInfo.match_time)}}
         </view>
 
@@ -72,7 +79,8 @@
             {{!matchInfo.paul_id?'猜猜看':(matchInfo.paul_home+' : '+matchInfo.paul_away)}}
           </button>
         </picker>
-        <view class="paul-disable" wx:else>
+        <view class="paul-disable {{!m.compareDatetime(matchInfo.match_time)&&(matchInfo.score_home!=null&&matchInfo.score_away!=null)?(matchInfo.paul_score==3?'color-score-3':(matchInfo.paul_score==1?'color-score-1':(matchInfo.paul_score==0?'color-score-0':'color-score-disable'))):'color-score-disable'}}"
+          wx:else>
           {{matchInfo.paul_id?(matchInfo.paul_home+' : '+matchInfo.paul_away):'- : -'}}
         </view>
       </view>
@@ -92,8 +100,9 @@
     <view class="block block-draw" style="height:{{paulStat.draw*240}}rpx">{{paulStat.draw?'平局':''}}</view>
     <view class="block block-away" style="height:{{paulStat.away_win*240}}rpx">{{paulStat.away_win?'客胜':''}}</view>
   </view>
+  <ad unit-id="adunit-973ff605e9d18a1a"></ad>
   <view class="paulTop">
-    <view class="title">预测TOP10</view>
+    <view class="title">预测TOP5</view>
     <view class="item-paulTop" wx:for="{{paulTop}}">
       <view class="score" wx:if="{{item}}">{{item.paul_home}}:{{item.paul_away}}</view>
       <view class="bar {{index==0?'color-bar-1':(index==1?'color-bar-2':(index==2?'color-bar-3':''))}}" style="width:{{item.paul_ct*550}}rpx"></view>
