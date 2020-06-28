@@ -22,8 +22,11 @@
   - 更新比赛结果
 
 # 截图
-
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG" width = "300" alt="" align=center />
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0452.PNG" width = "300" alt="" align=center />
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.JPG" width = "300" alt="" align=center />
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.JPG" width = "300" alt="" align=center />
+<center>
+  <figure>
+    <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG" width = "300" alt="" align=center />
+    <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0452.PNG" width = "300" alt="" align=center />
+    <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.JPG" width = "300" alt="" align=center />
+    <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.JPG" width = "300" alt="" align=center />
+  </figure>
+</center>
