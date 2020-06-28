@@ -8,9 +8,15 @@
 
 - 比赛竞猜
 <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG" width = "300" alt="" align=center />
+
 - 竞猜统计
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0452.PNG" width = "300" alt="" align=center />
+
 - 排行榜
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.PNG" width = "300" alt="" align=center />
+
 - 个人统计
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.PNG" width = "300" alt="" align=center />
 
 ### server
 > 微信小程序的服务端
