@@ -7,7 +7,7 @@
 > 微信小程序的主体程序
 
 - 比赛竞猜
-!(https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG)
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG" width = "300" alt="" align=center />
 - 竞猜统计
 - 排行榜
 - 个人统计
