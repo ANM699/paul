@@ -24,5 +24,5 @@
 # 截图
 
 <div align="center">
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG" width = "280"/><img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0452.PNG" width = "280"/><img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.JPG" width = "280"/><img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.JPG" width = "280"/>
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0444.PNG" width = "250"/> <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0452.PNG" width = "250"/> <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.JPG" width = "250"/> <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.JPG" width = "250"/>
 </div>
