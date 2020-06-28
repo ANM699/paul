@@ -13,10 +13,12 @@
 <img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_0452.PNG" width = "300" alt="" align=center />
 
 - 排行榜
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.PNG" width = "300" alt="" align=center />
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1814.JPG" width = "300" alt="" align=center />
 
 - 个人统计
-<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.PNG" width = "300" alt="" align=center />
+<img src="https://github.com/ANM699/paul/blob/master/screenshot/IMG_1815.JPG" width = "300" alt="" align=center />
+
+# 截图
 
 ### server
 > 微信小程序的服务端
