@@ -14,7 +14,7 @@
         "axios": "^0.18.0",
         "knex": "^0.14.6",
         "koa": "^2.5.1",
-        "koa-bodyparser": "^3.2.0",
+        "koa-bodyparser": "^4.3.0",
         "koa-ejs": "^4.1.1",
         "koa-log4": "^2.1.0",
         "koa-router": "^7.0.1",
